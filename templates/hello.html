@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Hello</title>
-  </head>
-  <body>
-    Acá va el ip: {{ user_ip }}
-  </body>
-</html>
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% block title %}
+  {{ super() }}
+  Wolcome!
+{% endblock %}
+{% block contend %}
+    {% if user_ip %}
+    <h1>Your ip is: {{ user_ip }}</h1>
+    {% else %}
+    <a href="{{ url_for('index') }}">Get Ip  </a>
+    {% endif %}
+    <ul>
+      {% for todo in todos %}
+        {{ macros.render_todo(todo) }}
+      {% endfor %}
+    </ul>
+{% endblock %}

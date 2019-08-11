@@ -9,6 +9,7 @@ from flask import (
 
 app = Flask(__name__)
 
+TODO = ['Get some coffe', 'wash dishes', 'buy a dog']
 
 @app.route('/')
 def index():
@@ -23,5 +24,8 @@ def index():
 @app.route('/hello')
 def hello():
     user_ip = request.cookies.get('user_ip')
-    print(f'ip es:{user_ip}')
-    return render_template('hello.html', user_ip=user_ip)
+    context = {
+        'user_ip': user_ip,
+        'todos': TODO
+        }
+    return render_template('hello.html', **context)
