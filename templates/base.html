@@ -9,10 +9,19 @@
 {% block body %}
   {% block navbar %}
     {% include 'navbar.html' %}
-    <div class="jumbotron">
-      <div class="container">
-        {% block content %}{% endblock %}
+  {% endblock %}
+  <div class="jumbotron">
+    <div class="container">
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" name="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
       </div>
+      {% endfor %}
+      {% block content %}{% endblock %}
     </div>
+  </div>
+  {% block scripts %}
+  {{ super() }}
   {% endblock %}
 {% endblock %}
