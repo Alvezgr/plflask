@@ -2,7 +2,6 @@
 
 import unittest
 from flask import (
-    Flask,
     request,
     make_response,
     redirect,
@@ -12,23 +11,13 @@ from flask import (
     flash
     )
 from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from app import create_app
+from app.forms import LoginForm
 
-APP = Flask(__name__)
-bootstrap = Bootstrap(APP)
-
-APP.config['SECRET_KEY'] = 'SUPER SECRETO'
+APP = create_app()
 
 TODO = ['Get some coffe', 'wash dishes', 'buy a dog']
 
-
-class LoginForm(FlaskForm):
-    """Class for login form"""
-    username = StringField('User Name', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Submit')
 
 @APP.cli.command()
 def test():
