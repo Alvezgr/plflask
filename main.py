@@ -5,11 +5,21 @@ from flask import (
     redirect,
     render_template
     )
-
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
+
 
 TODO = ['Get some coffe', 'wash dishes', 'buy a dog']
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', error=error)
+
+@app.errorhandler(500)
+def not_found(error):
+    return render_template('500.html', error=error)
 
 @app.route('/')
 def index():
