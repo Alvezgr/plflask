@@ -6,9 +6,11 @@
   Wolcome!
 {% endblock %}
 {% block content %}
-  {% if username %}
+<div class="container">
+  <div class="row">
+    {% if username %}
     <h1>Welcome, {{ username | capitalize }}</h1>
-  {% endif %}
+    {% endif %}
     {% if user_ip %}
     <h3>Your ip is: {{ user_ip }}</h3>
     {% else %}
@@ -16,7 +18,9 @@
     {% endif %}
     <ul>
       {% for todo in todos %}
-        {{ macros.render_todo(todo) }}
+      {{ macros.render_todo(todo) }}
       {% endfor %}
     </ul>
+  </div>
+</div>
 {% endblock %}
