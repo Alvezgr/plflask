@@ -13,7 +13,7 @@ from flask import (
 from flask_bootstrap import Bootstrap
 from app import create_app
 from app.forms import LoginForm
-
+from app.firestore_service import get_users
 APP = create_app()
 
 TODO = ['Get some coffe', 'wash dishes', 'buy a dog']
@@ -53,4 +53,7 @@ def hello():
         'todos': TODO,
         'username': username
         }
+    users = get_users()
+    for user in users:
+        print(user.id)
     return render_template('hello.html', **context)

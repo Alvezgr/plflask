@@ -11,6 +11,7 @@ flask-bootstrap = "*"
 flask-wtf = "*"
 flask-testing = "*"
 blinker = "*"
+firebase-admin = "*"
 
 [requires]
 python_version = "3.7"
