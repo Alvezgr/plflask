@@ -13,10 +13,8 @@ from flask import (
 from flask_bootstrap import Bootstrap
 from app import create_app
 from app.forms import LoginForm
-from app.firestore_service import get_users
+from app.firestore_service import get_users, get_todos
 APP = create_app()
-
-TODO = ['Get some coffe', 'wash dishes', 'buy a dog']
 
 
 @APP.cli.command()
@@ -50,10 +48,8 @@ def hello():
     username = session.get('username')
     context = {
         'user_ip': user_ip,
-        'todos': TODO,
-        'username': username
+        'todos': get_todos(username),
+        'username': username,
         }
-    users = get_users()
-    for user in users:
-        print(user.id)
+
     return render_template('hello.html', **context)

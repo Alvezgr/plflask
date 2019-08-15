@@ -21,6 +21,15 @@
       {{ macros.render_todo(todo) }}
       {% endfor %}
     </ul>
+    <ul>
+      {% for user in users %}
+      <li>
+        {{ user.id }}
+        {{ user.to_dict()['password'] }}
+
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 {% endblock %}
