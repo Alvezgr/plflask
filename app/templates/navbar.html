@@ -16,6 +16,9 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ url_for('index')}}">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('auth.logout') }}">Logout</a> </li>
+        {% endif %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">

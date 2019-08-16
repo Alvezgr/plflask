@@ -27,6 +27,6 @@ class UserModel(UserMixin):
         user_doc = get_user(user_id)
         user_data = UserData(
             username=user_doc.id,
-            password=user_doc.to_dic()['password']
+            password=user_doc.to_dict()['password']
         )
         return UserModel(user_data)
