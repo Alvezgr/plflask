@@ -4,10 +4,17 @@ from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from app.config import Config
 from auth import auth
+from .models import UserModel
+
+LOGIN_MANAGER = LoginManager()
+LOGIN_MANAGER.login_view = 'auth.login'
 
 
-login_manager = LoginManager()
-login_manager.login_view = 'auth.login'
+@LOGIN_MANAGER.user_loader
+def load_user(username):
+    """return the queery"""
+    return UserModel.query(username)
+
 
 def create_app():
     """create app method"""
@@ -15,6 +22,6 @@ def create_app():
     bootstrap = Bootstrap(app)
 
     app.config.from_object(Config)
-    login_manager.init_app(app)
+    LOGIN_MANAGER.init_app(app)
     app.register_blueprint(auth)
     return app
