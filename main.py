@@ -11,8 +11,10 @@ from flask import (
     flash
     )
 from flask_bootstrap import Bootstrap
+from flask_login import login_required
 from app import create_app
 from app.forms import LoginForm
+
 from app.firestore_service import get_users, get_todos
 APP = create_app()
 
@@ -42,6 +44,7 @@ def index():
     return response
 
 @APP.route('/hello')
+@login_required
 def hello():
     """In hello we display the ip"""
     user_ip = session.get('user_ip')

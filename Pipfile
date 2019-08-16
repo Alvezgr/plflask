@@ -12,6 +12,7 @@ flask-wtf = "*"
 flask-testing = "*"
 blinker = "*"
 firebase-admin = "*"
+flask-login = "*"
 
 [requires]
 python_version = "3.7"
